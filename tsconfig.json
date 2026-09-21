@@ -1,0 +1,14 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "types": ["chrome", "node", "dom-chromium-ai"]
+  },
+  "include": ["entrypoints", "src", "e2e", "*.config.ts", ".wxt/wxt.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}
