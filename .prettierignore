@@ -1,0 +1,5 @@
+# Keep downloaded skills identical to their upstream contents.
+.agents/skills/typesafe-ai/
+.agents/skills/playwright-cli/
+.agents/skills/chrome-extensions/
+.agents/skills/modern-web-guidance/
