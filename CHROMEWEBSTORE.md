@@ -388,15 +388,17 @@ Jev Tab Order 使用 Jev，依主題和你指定的排序規則整理目前 Chro
 
 ### 画像アセット
 
-Use screenshots matching each listing language; use English for shared fields. No store screenshots have been created yet; do not upload test-output images without checking their dimensions, visible data, and suitability. No image placeholders or reference-project assets have been added.
+Use the screenshot matching each listing language from `store-assets/screenshots/<locale>/01-settings.png`. Each capture shows the actual settings page at 1280×800 with an empty API key, default rules collapsed, and new groups disabled. All 10 supported languages have been captured and visually checked. Promotional images use this extension's icon without text.
 
-| 項目                                 | ファイル／値                                                  | 形式                                           |
-| ------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------- |
-| ショップ アイコン                    | [public/icon-128.png](public/icon-128.png)                    | 128×128 PNG                                    |
-| スクリーンショット（各対応言語）     | 未確定 — create captures of settings and organization/preview | 1280×800 or 640×400; submission-ready PNG/JPEG |
-| 全言語向け・言語別プロモーション動画 | 空欄                                                          | —                                              |
-| プロモーション タイル（小）          | 未確定 — no asset created                                     | 440×280                                        |
-| マーキー プロモーション タイル       | 空欄 — no asset created                                       | 1400×560                                       |
+| 項目                                 | ファイル／値                                                                 | 形式         |
+| ------------------------------------ | ---------------------------------------------------------------------------- | ------------ |
+| ショップ アイコン                    | [public/icon-128.png](public/icon-128.png)                                   | 128×128 PNG  |
+| スクリーンショット（各対応言語）     | [store-assets/screenshots/](store-assets/screenshots/)                       | 1280×800 PNG |
+| 全言語向け・言語別プロモーション動画 | 空欄                                                                         | —            |
+| プロモーション タイル（小）          | [store-assets/promotional-440x280.png](store-assets/promotional-440x280.png) | 440×280      |
+| マーキー プロモーション タイル       | 空欄 — no asset created                                                      | 1400×560     |
+
+GitHub social preview: [store-assets/social-preview-1280x640.png](store-assets/social-preview-1280x640.png) (1280×640 PNG). This is separate from the optional Chrome Web Store marquee tile.
 
 ### 追加フィールド・追加の指標・アイテム サポート
 
