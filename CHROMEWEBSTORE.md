@@ -77,13 +77,10 @@ HOW TO USE
 
 CHANGELOG
 0.1.0
-- Simplified settings into a compact single-column layout with collapsible default rules.
-- Added single-request Jev planning with local ranking.
-- Added popup-free, on-demand organization of tabs and groups using Jev, with a running badge and a completion badge that clears after three seconds.
-- Added custom sorting rules and optional creation of new groups with locally generated names.
-- Added layout previews and undo for the last organization.
-- Added protection for pinned tabs and existing group memberships.
-- Added multilingual support.
+- Organize tabs and groups with at most one Jev API request per operation.
+- Custom sorting rules and optional new groups.
+- Layout previews and undo.
+- Multilingual support.
 ```
 
 ##### 日本語 — `ja`
@@ -112,13 +109,10 @@ Jev Tab OrderはJevを利用し、現在のChromeウィンドウのタブを話�
 
 変更履歴
 0.1.0
-- 設定画面をコンパクトな1カラムに整理し、デフォルトルールを折りたたみ表示。
-- Jevへの1回のリクエストで計画を作成し、ローカルで並び替える方式を追加。
-- Jevによるポップアップなしのタブ・グループ整理と、実行中バッジおよび3秒後に消える完了バッジを追加。
-- カスタムルールと、端末内で生成した名前による任意の新規グループ作成を追加。
-- 配置のプレビューと最後の整理を元に戻す機能を追加。
-- 固定タブと既存グループの所属を保護する仕組みを追加。
-- 多言語対応を追加。
+- Jev APIへの最大1回のリクエストでタブとグループを整理。
+- カスタムルールと任意の新規グループ作成。
+- 配置のプレビューと元に戻す機能。
+- 多言語対応。
 ```
 
 ##### Deutsch — `de`
@@ -147,13 +141,10 @@ VERWENDUNG
 
 ÄNDERUNGSVERLAUF
 0.1.0
-- Einstellungen in einem kompakten einspaltigen Layout mit einklappbaren Standardregeln vereinfacht.
-- Planung mit einer einzigen Jev-Anfrage und lokaler Sortierung hinzugefügt.
-- Bedarfsabhängiges Ordnen von Tabs und Gruppen mit Jev ohne Popup, mit einer Fortschrittsanzeige und einer nach drei Sekunden verschwindenden Abschlussanzeige hinzugefügt.
-- Eigene Sortierregeln und optionale neue Gruppen mit lokal erzeugten Namen hinzugefügt.
-- Vorschau und Rückgängigmachen der letzten Anordnung hinzugefügt.
-- Schutz für angeheftete Tabs und bestehende Gruppenzugehörigkeiten hinzugefügt.
-- Mehrsprachige Unterstützung hinzugefügt.
+- Tabs und Gruppen mit höchstens einer Jev-API-Anfrage pro Vorgang ordnen.
+- Eigene Sortierregeln und optionale neue Gruppen.
+- Vorschau und Rückgängigmachen.
+- Mehrsprachige Unterstützung.
 ```
 
 ##### Español — `es`
@@ -182,13 +173,10 @@ CÓMO USAR
 
 HISTORIAL DE CAMBIOS
 0.1.0
-- Se simplificó la configuración con un diseño compacto de una columna y reglas predeterminadas desplegables.
-- Se añadió la planificación con una sola solicitud a Jev y ordenación local.
-- Se añadió la organización de pestañas y grupos bajo demanda mediante Jev sin ventanas emergentes, con un indicador durante la ejecución y otro de finalización que desaparece tras tres segundos.
-- Se añadieron reglas personalizadas y creación opcional de grupos con nombres generados localmente.
-- Se añadieron vistas previas y la opción de deshacer la última organización.
-- Se añadió protección para las pestañas fijadas y la pertenencia a grupos existentes.
-- Se añadió compatibilidad con varios idiomas.
+- Organización de pestañas y grupos con un máximo de una solicitud a la API de Jev por operación.
+- Reglas de ordenación personalizadas y creación opcional de grupos.
+- Vista previa de la disposición y opción de deshacer.
+- Compatibilidad con varios idiomas.
 ```
 
 ##### Français — `fr`
@@ -217,13 +205,10 @@ UTILISATION
 
 HISTORIQUE DES MODIFICATIONS
 0.1.0
-- Simplification des paramètres dans une disposition compacte sur une colonne, avec des règles par défaut repliables.
-- Ajout de la planification en une seule requête Jev avec tri local.
-- Ajout de l’organisation à la demande des onglets et groupes avec Jev, sans fenêtre contextuelle, avec un badge pendant le traitement et un badge de fin qui disparaît après trois secondes.
-- Ajout de règles personnalisées et de la création facultative de groupes avec des noms générés localement.
-- Ajout de l’aperçu des dispositions et de l’annulation de la dernière organisation.
-- Ajout de la protection des onglets épinglés et des appartenances aux groupes existants.
-- Ajout de la prise en charge multilingue.
+- Organisation des onglets et groupes avec au maximum une requête à l’API Jev par opération.
+- Règles de tri personnalisées et création facultative de groupes.
+- Aperçu des dispositions et annulation.
+- Prise en charge multilingue.
 ```
 
 ##### 한국어 — `ko`
@@ -252,13 +237,10 @@ Jev API 요청 한 번으로 창 전체의 그룹 배정과 정렬을 함께 판
 
 변경 내역
 0.1.0
-- 설정 화면을 간결한 한 열 구성으로 정리하고 기본 규칙을 접어서 표시합니다.
-- 한 번의 Jev 요청으로 계획을 만들고 로컬에서 정렬하는 방식을 추가했습니다.
-- Jev를 사용해 팝업 없이 탭과 그룹을 정리하고, 실행 중 배지와 3초 후에 사라지는 완료 배지를 표시하는 기능을 추가했습니다.
-- 사용자 지정 정렬 규칙과 로컬로 생성한 이름을 사용하는 선택적 새 그룹 생성 기능을 추가했습니다.
-- 배치 미리보기와 마지막 정리 실행 취소 기능을 추가했습니다.
-- 고정 탭과 기존 그룹 소속을 보호하는 기능을 추가했습니다.
-- 다국어 지원을 추가했습니다.
+- 작업당 최대 한 번의 Jev API 요청으로 탭과 그룹 정리.
+- 사용자 지정 정렬 규칙과 선택적 새 그룹 생성.
+- 배치 미리보기와 실행 취소.
+- 다국어 지원.
 ```
 
 ##### Português (Brasil) — `pt_BR`
@@ -287,13 +269,10 @@ COMO USAR
 
 HISTÓRICO DE ALTERAÇÕES
 0.1.0
-- Configurações simplificadas em um layout compacto de uma coluna, com regras padrão recolhíveis.
-- Adicionado planejamento com uma única solicitação ao Jev e ordenação local.
-- Adicionada organização de abas e grupos sob demanda usando o Jev, sem pop-ups, com um indicador durante a execução e outro de conclusão que desaparece após três segundos.
-- Adicionadas regras personalizadas e criação opcional de grupos com nomes gerados localmente.
-- Adicionadas visualizações da disposição e a opção de desfazer a última organização.
-- Adicionada proteção para abas fixadas e vínculos com grupos existentes.
-- Adicionado suporte a vários idiomas.
+- Organização de abas e grupos com no máximo uma solicitação à API do Jev por operação.
+- Regras de ordenação personalizadas e criação opcional de grupos.
+- Visualização da disposição e opção de desfazer.
+- Suporte a vários idiomas.
 ```
 
 ##### Русский — `ru`
@@ -322,13 +301,10 @@ Jev Tab Order использует Jev для упорядочивания вк�
 
 ИСТОРИЯ ИЗМЕНЕНИЙ
 0.1.0
-- Настройки упрощены до компактного одноколоночного вида со сворачиваемыми правилами по умолчанию.
-- Добавлено планирование одним запросом к Jev с локальной сортировкой.
-- Добавлено упорядочивание вкладок и групп по запросу с помощью Jev без всплывающего окна, с индикатором выполнения и значком завершения, исчезающим через три секунды.
-- Добавлены собственные правила сортировки и необязательное создание групп с локально сгенерированными названиями.
-- Добавлены предпросмотр расположения и отмена последнего упорядочивания.
-- Добавлена защита закреплённых вкладок и принадлежности к существующим группам.
-- Добавлена поддержка нескольких языков.
+- Упорядочивание вкладок и групп с помощью не более одного запроса к API Jev за операцию.
+- Собственные правила сортировки и необязательное создание групп.
+- Предпросмотр расположения и отмена.
+- Поддержка нескольких языков.
 ```
 
 ##### 简体中文 — `zh_CN`
@@ -357,13 +333,10 @@ Jev Tab Order 使用 Jev，按主题和你指定的排序规则整理当前 Chro
 
 更新日志
 0.1.0
-- 设置页面简化为紧凑的单列布局，默认规则可折叠显示。
-- 新增通过一次 Jev 请求制定方案并在本地排序的方式。
-- 新增使用 Jev 按需整理标签页和分组的功能，无需弹出窗口，显示运行中徽标，完成徽标在三秒后消失。
-- 新增自定义排序规则，以及可选的分组创建功能，名称在本地生成。
-- 新增布局预览和撤销上次整理的功能。
-- 新增对固定标签页和现有分组归属的保护。
-- 新增多语言支持。
+- 每次操作最多通过一次 Jev API 请求整理标签页和分组。
+- 自定义排序规则和可选的新建分组功能。
+- 布局预览和撤销。
+- 多语言支持。
 ```
 
 ##### 繁體中文 — `zh_TW`
@@ -392,13 +365,10 @@ Jev Tab Order 使用 Jev，依主題和你指定的排序規則整理目前 Chro
 
 更新紀錄
 0.1.0
-- 設定頁面簡化為精簡的單欄配置，預設規則可摺疊顯示。
-- 新增透過一次 Jev 請求制定計畫並在本機排序的方式。
-- 新增使用 Jev 依需求整理分頁和群組的功能，無須彈出視窗，顯示執行中徽章，完成徽章在三秒後消失。
-- 新增自訂排序規則，以及選擇性建立群組的功能，名稱在本機產生。
-- 新增配置預覽和復原上次整理的功能。
-- 新增對已固定分頁和現有群組歸屬的保護。
-- 新增多語言支援。
+- 每次操作最多透過一次 Jev API 請求整理分頁和群組。
+- 自訂排序規則與選擇性建立群組功能。
+- 配置預覽與復原。
+- 多語言支援。
 ```
 
 ### 画像アセット
