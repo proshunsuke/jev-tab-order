@@ -1,34 +1,49 @@
 # Chrome Web Store submission information
 
-[Developer Dashboard](https://chrome.google.com/webstore/devconsole)
+[Developer Dashboard](https://chrome.google.com/webstore/devconsole/8009c97a-122b-4cb9-abdd-a961267915fc/afbcjklgfmfokamphkgclkocfhgablka/edit)
 
-Target version: **0.1.0**. The values below are the intended submission contents, not a record of publication. Headings follow the Japanese dashboard structure used by the reference project. Copy each text block into the indicated field and locale. “空欄” means leave the field empty; “未確定” means a decision or missing value is required before submission, not text to paste into a field.
+Target version: **0.1.0**. The values below are the intended submission contents, not a record of publication. Field names and order were checked against this item’s Japanese Developer Dashboard on 2026-09-22. Copy each text block into the indicated field and locale. “空欄” means leave the field empty; “オン” and “オフ” mean checked and unchecked.
 
 Publisher ID: `8009c97a-122b-4cb9-abdd-a961267915fc` (verified in the Developer Dashboard).
 
-This is an initial submission: there is no assigned item ID or existing upload to preserve. Public contact information and a hosted privacy policy are not yet configured. Use the shared publisher and publishing service account documented in the release guide. Do not reuse the reference extension's item ID, listing URLs, or assets.
+Extension ID: `afbcjklgfmfokamphkgclkocfhgablka`.
+
+Copy only fenced text into text fields and only the value column into selection fields. Notes are not form values. Rows marked “表示のみ” are populated by the uploaded package, not entered manually. The password field is entered privately by the publisher; preserve it during automated transfer. Credentials must never be stored in this file.
 
 ## パッケージ
 
-| 項目                      | 値                                                                        |
-| ------------------------- | ------------------------------------------------------------------------- |
-| パッケージ                | `dist/jev-tab-order-0.1.0-chrome.zip`                                     |
-| バージョン                | `0.1.0` (from `package.json`)                                             |
-| アイテムタイプ            | 拡張機能                                                                  |
-| 権限                      | `storage`, `tabs`, `tabGroups`, `contextMenus`                            |
-| サイトへのアクセス        | `https://api.typesafe.ai/*` (from `host_permissions`; no content scripts) |
-| 検証済み CRX アップロード | 未確定 — no verified CRX publishing setup is configured                   |
+| 操作                           | ファイル                              |
+| ------------------------------ | ------------------------------------- |
+| 新しいパッケージをアップロード | `dist/jev-tab-order-0.1.0-chrome.zip` |
+
+### ドラフト
+
+| 項目                      | 値                                                                                                                      | 操作                     |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| バージョン                | 0.1.0                                                                                                                   | 表示のみ                 |
+| アイテムタイプ            | 拡張機能                                                                                                                | 表示のみ                 |
+| 言語                      | 英語、スペイン語、ドイツ語、フランス語、ポルトガル語 (ブラジル)、ロシア語、韓国語、中国語 (台湾)、中国語 (中国)、日本語 | 表示のみ                 |
+| 権限                      | storage, tabs, tabGroups, contextMenus, host permission                                                                 | 表示のみ                 |
+| CRX ファイル              | main.crx                                                                                                                | 表示のみ                 |
+| 公開鍵                    | 公開鍵を表示                                                                                                            | 表示のみ                 |
+| 検証済み CRX アップロード | 無効のまま維持                                                                                                          | 「有効にする」は押さない |
+
+The host permission covers `https://api.typesafe.ai/*`; it is not a separate package form field. The “公開済み” section is read-only.
 
 ## ストアの掲載情報
 
+### 編集中の言語
+
+Select each language listed under 説明 and upload its matching localized screenshot. English (`en`) is the default. Shared fields are entered once.
+
 ### 商品の詳細
 
-| 項目                 | 値                                                                                                                                |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| パッケージのタイトル | Jev Tab Order (from manifest)                                                                                                     |
-| パッケージの概要     | `__MSG_extensionDescription__`: `extensionDescription` in each [locales/*.json](locales/) (from manifest; maximum 132 characters) |
-| カテゴリ             | 未確定 — suggested category: ワークフローと計画                                                                                   |
-| 言語                 | 英語 (default locale: `en`)                                                                                                       |
+| 項目                 | 値                                                                 | 操作               |
+| -------------------- | ------------------------------------------------------------------ | ------------------ |
+| パッケージのタイトル | Jev Tab Order                                                      | 表示のみ           |
+| パッケージの概要     | `extensionDescription` in the selected language’s `locales/*.json` | 表示のみ           |
+| 説明                 | The matching language block below                                  | 入力               |
+| カテゴリ             | ワークフローと計画                                                 | 選択（仕事効率化） |
 
 #### 説明
 
@@ -388,32 +403,59 @@ Jev Tab Order 使用 Jev，依主題和你指定的排序規則整理目前 Chro
 
 ### 画像アセット
 
-Use the screenshot matching each listing language from `store-assets/screenshots/<locale>/01-settings.png`. Each capture shows the actual settings page at 1280×800 with an empty API key, default rules collapsed, and new groups disabled. All 10 supported languages have been captured and visually checked. Promotional images use this extension's icon without text.
+| 項目              | ファイル／値          |
+| ----------------- | --------------------- |
+| ショップ アイコン | `public/icon-128.png` |
 
-| 項目                                 | ファイル／値                                                                 | 形式         |
-| ------------------------------------ | ---------------------------------------------------------------------------- | ------------ |
-| ショップ アイコン                    | [public/icon-128.png](public/icon-128.png)                                   | 128×128 PNG  |
-| スクリーンショット（各対応言語）     | [store-assets/screenshots/](store-assets/screenshots/)                       | 1280×800 PNG |
-| 全言語向け・言語別プロモーション動画 | 空欄                                                                         | —            |
-| プロモーション タイル（小）          | [store-assets/promotional-440x280.png](store-assets/promotional-440x280.png) | 440×280      |
-| マーキー プロモーション タイル       | 空欄 — no asset created                                                      | 1400×560     |
+#### ローカライズ版アセット
 
-GitHub social preview: [store-assets/social-preview-1280x640.png](store-assets/social-preview-1280x640.png) (1280×640 PNG). This is separate from the optional Chrome Web Store marquee tile.
+| 項目                             | ファイル／値                             |
+| -------------------------------- | ---------------------------------------- |
+| ローカライズ版プロモーション動画 | 空欄                                     |
+| ローカライズ版スクリーンショット | The file for the selected language below |
 
-### 追加フィールド・追加の指標・アイテム サポート
+| 編集中の言語                      | ローカライズ版スクリーンショット                 |
+| --------------------------------- | ------------------------------------------------ |
+| 英語 — `en`                       | `store-assets/screenshots/en/01-settings.png`    |
+| 日本語 — `ja`                     | `store-assets/screenshots/ja/01-settings.png`    |
+| ドイツ語 — `de`                   | `store-assets/screenshots/de/01-settings.png`    |
+| スペイン語 — `es`                 | `store-assets/screenshots/es/01-settings.png`    |
+| フランス語 — `fr`                 | `store-assets/screenshots/fr/01-settings.png`    |
+| 韓国語 — `ko`                     | `store-assets/screenshots/ko/01-settings.png`    |
+| ポルトガル語 (ブラジル) — `pt_BR` | `store-assets/screenshots/pt_BR/01-settings.png` |
+| ロシア語 — `ru`                   | `store-assets/screenshots/ru/01-settings.png`    |
+| 中国語 (中国) — `zh_CN`           | `store-assets/screenshots/zh_CN/01-settings.png` |
+| 中国語 (台湾) — `zh_TW`           | `store-assets/screenshots/zh_TW/01-settings.png` |
 
-| 項目                           | 値                                                         |
-| ------------------------------ | ---------------------------------------------------------- |
-| 公式 URL                       | なし — no verified website configured                      |
-| ホームページ URL               | 未確定 — no public repository or homepage configured       |
-| サポート URL                   | 未確定 — configure together with the contact in PRIVACY.md |
-| 成人向けコンテンツ             | オフ                                                       |
-| Google アナリティクス 4（GA4） | 無効                                                       |
-| アイテム サポート／公開設定    | 未確定 — publisher-wide setting                            |
+#### 全言語向けアセット
+
+| 項目                           | ファイル／値                                  |
+| ------------------------------ | --------------------------------------------- |
+| 全言語向けプロモーション動画   | 空欄                                          |
+| 全言語向けスクリーンショット   | `store-assets/screenshots/en/01-settings.png` |
+| プロモーション タイル（小）    | `store-assets/promotional-440x280.png`        |
+| マーキー プロモーション タイル | 空欄                                          |
+
+The shared screenshot provides an English fallback; each supported language also receives its localized screenshot. Screenshots are 1280×800, the icon is 128×128, and the small tile is 440×280. Do not upload the GitHub social preview (1280×640) to the 1400×560 marquee field.
+
+### 追加フィールド
+
+| 項目               | 値                                                  |
+| ------------------ | --------------------------------------------------- |
+| 公式 URL           | なし                                                |
+| ホームページ URL   | https://github.com/proshunsuke/jev-tab-order        |
+| サポート URL       | https://github.com/proshunsuke/jev-tab-order/issues |
+| 成人向けコンテンツ | オフ                                                |
+
+### アイテム サポート
+
+No editable control is shown on this item’s listing page. It links to the publisher-wide setting through “公開設定をここで変更”; keep that setting unchanged. There is no GA4 field on this form.
 
 ## プライバシー
 
-### 単一用途の説明
+### 単一用途
+
+#### 単一用途の説明
 
 Maximum: 1,000 characters.
 
@@ -423,7 +465,7 @@ Organize tabs and tab groups in the current Chrome window by topic and user-defi
 
 ### 権限が必要な理由
 
-Maximum: 1,000 characters per field. Upload the target package before filling the permission fields and match them to the fields actually shown. API permissions and host access are declared separately in the manifest. The URL pattern is the scope of the host permission, not the name of an independent dashboard text field.
+Maximum: 1,000 characters per field. The five fields below are present for the uploaded 0.1.0 package.
 
 #### storage が必要な理由
 
@@ -449,40 +491,40 @@ Reads existing tab group names, colors, collapsed states, and identifiers; moves
 Adds a page context-menu command to organize the current window and extension-action context-menu commands for organization, undo, and settings. These commands provide explicit user actions; the extension does not automatically organize tabs in response to browsing events.
 ```
 
-#### ホスト権限が必要な理由
+#### ホスト権限 が必要な理由
 
-Scope: `https://api.typesafe.ai/*`. Paste the following into the dashboard's host-permission/site-access justification field, rather than looking for a separate field named after this URL.
+Scope: `https://api.typesafe.ai/*`. Paste only the following block into “ホスト権限 が必要な理由”.
 
 ```text
 Allows HTTPS requests to TypeSafe's decision API at https://api.typesafe.ai/v1/systemone for user-requested organization, previews, and connection tests. Organization and preview send relevant tab titles, sanitized URL origins and paths, identifiers, group names, and sorting rules. The user's API key is sent in the authentication header. Connection tests send fixed test data, not tab metadata. This host access is limited to the TypeSafe API; no content scripts or arbitrary website access are requested. Responses contain decision data, not executable code.
 ```
 
-### リモートコード
+#### リモートコード
 
 | 項目                               | 値                                       |
 | ---------------------------------- | ---------------------------------------- |
 | リモートコードを使用していますか？ | いいえ、リモートコードを使用していません |
-| 理由                               | 空欄 (disabled)                          |
+| 理由                               | 空欄                                     |
 
-Jev returns typed decision data processed by bundled extension code. The extension does not download JavaScript or Wasm to execute. Chrome manages its built-in AI model separately.
+Select “いいえ” explicitly; do not retain the form’s initial “はい” selection. Leave the conditional reason field empty. Jev returns typed decision data processed by bundled extension code. The extension does not download JavaScript or Wasm to execute. Chrome manages its built-in AI model separately.
 
 ### データ使用
 
 The selections below reflect the implemented data flows, including local processing. They must agree with [PRIVACY.md](PRIVACY.md). The reference project's answers cannot be copied unchanged: this extension handles API credentials and sends tab metadata to TypeSafe.
 
-| ユーザーデータの種類         | 選択                                                                                                                        |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| 個人を特定できる情報         | 未確定 — assess incidental personal data in titles, URL paths, and freeform rules against the submission form's definition  |
-| 健康に関する情報             | 未確定 — no dedicated health feature; freeform inputs and tab metadata may contain sensitive information                    |
-| 財務状況や支払いに関する情報 | 未確定 — no payment details are collected by extension code; assess incidental input content                                |
-| 認証に関する情報             | オン — TypeSafe API key stored locally and transmitted for authentication                                                   |
-| 個人的コミュニケーション     | 未確定 — no message bodies are read; assess user-provided rules and tab titles                                              |
-| 位置情報                     | 未確定 — no geolocation API; assess incidental URL/rule content and TypeSafe's connection metadata handling                 |
-| ウェブ履歴                   | オン — open tab URLs are read, stored for undo, and sanitized for TypeSafe requests                                         |
-| ユーザーのアクティビティ     | オン — user-requested tab/group layouts and operation state are processed locally; no general click or keystroke monitoring |
-| ウェブサイトのコンテンツ     | オン — page titles are read and used for semantic organization; page bodies are not read                                    |
+| ユーザーデータの種類         | 選択 | Note (do not paste)                                                                                                                                                                              |
+| ---------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 個人を特定できる情報         | オン | Names, email addresses, and other identifiers may occur in titles, URL paths, group names, and custom rules processed locally or sent to TypeSafe.                                               |
+| 健康に関する情報             | オン | Health information may be present in user-provided rules or tab metadata. It is not reliably removed before processing or transmission; page bodies and medical records are not separately read. |
+| 財務状況や支払いに関する情報 | オン | Financial information may be present in user-provided rules or tab metadata. The extension does not separately access payment forms or bank records.                                             |
+| 認証に関する情報             | オン | TypeSafe API key stored locally and transmitted for authentication                                                                                                                               |
+| 個人的コミュニケーション     | オン | Message subjects or excerpts may occur in tab titles or user-provided rules. The extension does not separately read email or chat bodies.                                                        |
+| 位置情報                     | オン | TypeSafe may receive the request IP address and infer general location; location information can also occur in user input. The extension does not request GPS access.                            |
+| ウェブ履歴                   | オン | open tab URLs are read, stored for undo, and sanitized for TypeSafe requests                                                                                                                     |
+| ユーザーのアクティビティ     | オン | user-requested tab/group layouts and operation state are processed locally; no general click or keystroke monitoring                                                                             |
+| ウェブサイトのコンテンツ     | オン | page titles are read and used for semantic organization; page bodies are not read                                                                                                                |
 
-Resolve every “未確定” before submission. These entries are not a claim that sensitive input is filtered out. Do not declare “no data collected” simply because the developer does not operate a server. The [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq) covers local processing; the [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy) requires consistent disclosures. Review [TypeSafe's Privacy Policy](https://typesafe.ai/legal/privacy-policy) for service-side processing and retention.
+The selections intentionally include sensitive information that may be embedded in the actual inputs; they do not imply dedicated access to medical records, payment forms, or message bodies. The extension does not classify or reliably redact these categories before processing. This is a conservative disclosure decision for this implementation, not a claim that Google requires every extension to select all categories. Local operation records and TypeSafe service usage also account for the activity selection. See the [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy), and [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
 
 | 開示事項                                                                         | 選択 |
 | -------------------------------------------------------------------------------- | ---- |
@@ -494,31 +536,42 @@ These are the intended certifications for the documented implementation, not a r
 
 ### プライバシー ポリシー
 
-| 項目                        | 値                                                                                                                                      |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| プライバシー ポリシーの URL | 未確定 — publish the reviewed [PRIVACY.md](PRIVACY.md) at an accessible URL and add the extension developer's contact before submission |
+| 項目                        | 値                                                                |
+| --------------------------- | ----------------------------------------------------------------- |
+| プライバシー ポリシーの URL | https://github.com/proshunsuke/jev-tab-order/blob/main/PRIVACY.md |
 
 ## 販売地域
 
-| 項目       | 値                                                                                               |
-| ---------- | ------------------------------------------------------------------------------------------------ |
-| 決済方法   | 未確定 — no extension payment flow is implemented; TypeSafe API usage may incur separate charges |
-| 公開設定   | 未確定                                                                                           |
-| 販売先の国 | 未確定                                                                                           |
+| 項目                    | 値           |
+| ----------------------- | ------------ |
+| 決済方法                | 料金なし     |
+| 公開設定                | 公開         |
+| Trusted Tester グループ | なし         |
+| 販売先の国を選択        | すべての地域 |
+
+These values retain the selections currently shown in the dashboard. The extension has no in-app purchase flow; TypeSafe API usage may incur separate charges. Trusted Tester groups apply only when visibility is private.
 
 ## テスト手順
 
-| 項目       | 値                                                                                                                                           |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| ユーザー名 | 空欄 — no extension username                                                                                                                 |
-| パスワード | 未確定 — arrange a usable review-only TypeSafe API key through the dashboard's private credential fields; do not commit it to the repository |
+### 認証情報
 
-Do not submit until the review credential and its delivery method are ready. Verify actual Jev behavior and Chrome built-in AI separately from mocked automated tests, following the [release guide](.agents/skills/jev-tab-order-release/SKILL.md). Live checks have not yet been performed.
+Maximum: 100 characters each for username and password.
+
+| 項目       | 値                                           |
+| ---------- | -------------------------------------------- |
+| ユーザー名 | 空欄                                         |
+| パスワード | ユーザーが直接入力（自動転記では変更しない） |
+
+Supply a review-only TypeSafe API key privately in the password field if it fits the 100-character limit. If it does not fit, resolve a private delivery method before submission; do not truncate the key. This page has its own “変更を保存” button. Listing and privacy pages use “下書きとして保存する”.
 
 ### 追加の手順
 
 Maximum: 500 characters. Supply the review credential separately before using this text.
 
 ```text
-Requires Chrome 138+ and a TypeSafe API key supplied privately for review. Right-click the extension icon, open Settings, enter the key, and save. Open several web tabs and an existing tab group. In Settings, select Preview current window, then Apply this layout and Undo. The toolbar icon organizes directly. New groups require Allow new groups and available Chrome built-in AI; without the model, sorting still works. Shortcuts: chrome://extensions/shortcuts.
+Requires Chrome 138+. The Password field contains the review TypeSafe API key. Right-click the extension icon, open Settings, enter the key, and save. Open several web tabs and an existing tab group. In Settings, select Preview current window, then Apply this layout and Undo. The toolbar icon organizes directly. New groups require Allow new groups and available Chrome built-in AI; without the model, sorting still works. Shortcuts: chrome://extensions/shortcuts.
 ```
+
+## Transfer instructions
+
+Copy all specified values and localized text; upload the exact asset paths listed above. Preserve the password field for the publisher’s private review API key. There are no other unresolved form values. Before submission, ensure the updated `PRIVACY.md` is present on GitHub’s `main` branch; local edits do not update the linked public policy. Save listing/privacy/distribution changes as a draft and test instructions with their separate save button.

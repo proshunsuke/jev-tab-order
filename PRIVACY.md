@@ -1,6 +1,6 @@
 # Privacy Policy for Jev Tab Order
 
-_Last updated: September 21, 2026_
+_Last updated: September 22, 2026_
 
 ## Overview
 
@@ -22,7 +22,7 @@ When you request organization or a preview, the extension reads the current wind
 
 Requests to TypeSafe at `https://api.typesafe.ai/v1/systemone` contain relevant web tab titles, sanitized URLs, tab and group identifiers, group names, and the effective sorting rules. Each organization or preview sends at most one request containing all group-membership, topic-relationship, and position-priority questions. A window without eligible web tabs sends none. Failed requests are not retried automatically. Group naming and layout application do not send additional TypeSafe requests.
 
-Web tab titles are limited to 120 characters. URLs are reduced to their origin and path, limited to 160 characters; URL credentials, query strings, and fragments are removed. This is not anonymization: titles, URL paths, group names, and freeform rules may still contain personal or sensitive information.
+Web tab titles are limited to 120 characters. URLs are reduced to their origin and path, limited to 160 characters; URL credentials, query strings, and fragments are removed. This is not anonymization: titles, URL paths, group names, and freeform rules may still contain personal or sensitive information, including names, email addresses, health or financial information, message subjects or excerpts, and location information. These categories are not reliably detected or removed before processing or transmission. This does not give the extension separate access to medical records, payment forms, message bodies, or GPS data.
 
 Pinned tab titles and URLs are not sent to TypeSafe. Non-web tab titles and URLs are replaced with a generic label and an empty URL in decision inputs, although their identifiers may be included. The extension does not read page bodies, form values, cookies, or past browsing history through Chrome's History API. Open tab URLs are nevertheless browsing information.
 
@@ -81,6 +81,6 @@ We will update this policy when the extension's data handling changes and revise
 
 ## Contact
 
-A public contact channel for the extension developer has not yet been configured. It must be added here before store submission; this policy is currently a pre-release draft.
+For questions about this extension or its privacy practices, contact the developer through [GitHub Issues](https://github.com/proshunsuke/jev-tab-order/issues). Issues are public; do not include API keys, private tab URLs or titles, or other sensitive information.
 
 For questions about information held by TypeSafe, use the contact details in [TypeSafe's Privacy Policy](https://typesafe.ai/legal/privacy-policy). TypeSafe's contact is not the extension developer's contact.
