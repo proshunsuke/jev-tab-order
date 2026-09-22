@@ -25,6 +25,8 @@ See [supported languages](locales/).
 - **Sorting rules**: Leave blank to use the defaults. Custom text replaces the entire default rule. Example: “Put official documentation before tutorials. Order groups as Development, Research, Personal. Do not create new groups.”
 - **Allow new groups**: New groups require permission from both this setting and the rules, multiple related ungrouped tabs, and available Chrome built-in AI for naming. Use the preparation button in settings if the model needs an initial download.
 
+<img src="store-assets/screenshots/en/01-settings.png" alt="Jev Tab Order — Settings" width="640">
+
 ## How It Works
 
 The extension collects the window's tab information, asks Jev for judgments, then turns those answers into a layout and applies it through Chrome.
