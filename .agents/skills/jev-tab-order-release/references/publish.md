@@ -2,9 +2,9 @@
 
 [Release Extension](../../../../.github/workflows/release.yml) is the source of truth for automated releases. It follows the reference project's process: manual dispatch, build and ZIP, Chrome Web Store draft upload through Workload Identity Federation, then GitHub Release creation with the ZIP attached. It does not submit the draft for review or publish it to the store.
 
-The workflow is implemented and the public GitHub repository has been created. Store item and authentication setup are still pending. No release workflow run has been verified. Keep this status accurate as setup progresses.
+The workflow is implemented and the public GitHub repository has been created. On 2026-09-22, the dedicated Workload Identity provider and repository-scoped service-account access were configured. All four repository Actions secrets (`GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT_EMAIL`, `CHROME_PUBLISHER_ID`, and `CHROME_EXTENSION_ID`) are registered. The separate [Jev Tab Order store item](https://chrome.google.com/webstore/devconsole/8009c97a-122b-4cb9-abdd-a961267915fc/afbcjklgfmfokamphkgclkocfhgablka/edit) was created by uploading the local ZIP and is a draft, not submitted for review. Its extension ID is `afbcjklgfmfokamphkgclkocfhgablka`. The [initial release workflow](https://github.com/proshunsuke/jev-tab-order/actions/runs/35669794357) completed successfully, including Google authentication and draft upload. Keep this status accurate as setup progresses.
 
-The destination is the public [proshunsuke/jev-tab-order](https://github.com/proshunsuke/jev-tab-order) repository, configured as the local `origin` remote. Use the reference extension's Chrome Web Store publisher, while creating a separate store item for Jev Tab Order. Reuse the existing Google Cloud project and publisher-linked service account. Add federation access scoped to the new repository; no cloud resources or access permissions have been changed yet.
+The destination is the public [proshunsuke/jev-tab-order](https://github.com/proshunsuke/jev-tab-order) repository, configured as the local `origin` remote. Jev Tab Order has its own store item under the reference extension's Chrome Web Store publisher. Reuse the existing Google Cloud project and publisher-linked service account. Federation access for both repositories is configured separately, preserving the reference repository's access.
 
 Verified in the Google Cloud console and publisher dashboard on 2026-09-21:
 
@@ -18,7 +18,9 @@ Verified in the Google Cloud console and publisher dashboard on 2026-09-21:
 | Existing Workload Identity pool     | `github`                                                                       |
 | Existing Workload Identity provider | `tab-position-options-fork`                                                    |
 
-These are existing infrastructure identifiers, not evidence that Jev Tab Order has federation access. Chrome Web Store currently permits only one linked service account per publisher, with access to all its items. A separate Google Cloud project alone does not isolate store publishing permissions. Do not replace the linked account during setup, as the existing extension relies on it. A separate federation project could still impersonate the shared publisher-linked account, but would require a cross-project IAM binding.
+Jev Tab Order uses provider `projects/675377080739/locations/global/workloadIdentityPools/github/providers/jev-tab-order`, with issuer `https://token.actions.githubusercontent.com`, default audience, and condition `assertion.repository=='proshunsuke/jev-tab-order'`. Attribute mappings are `google.subject=assertion.sub` and `attribute.repository=assertion.repository`. The shared service account grants Workload Identity access to `attribute.repository="proshunsuke/jev-tab-order"`; the existing `proshunsuke/tab-position-options-fork` binding remains present. Both bindings were verified in the pool's connected service accounts view.
+
+Chrome Web Store currently permits only one linked service account per publisher, with access to all its items. A separate Google Cloud project alone does not isolate store publishing permissions. Do not replace the linked account during setup, as the existing extension relies on it. A separate federation project could still impersonate the shared publisher-linked account, but would require a cross-project IAM binding.
 
 ## Initial Setup
 
