@@ -482,17 +482,17 @@ Select “いいえ” explicitly; do not retain the form’s initial “はい�
 
 The selections below reflect the implemented data flows, including local processing. They must agree with [PRIVACY.md](PRIVACY.md). The reference project's answers cannot be copied unchanged: this extension handles API credentials and sends tab metadata to TypeSafe.
 
-| ユーザーデータの種類 | 選択 | Note (do not paste) |
-| -------------------- | ---- | ------------------- |
-| 個人を特定できる情報 | オフ | No dedicated collection of names, email addresses, or personal identifiers. |
-| 健康に関する情報 | オフ | No collection of medical records or health measurements. |
-| 財務状況や支払いに関する情報 | オフ | No access to payment forms, financial accounts, or transaction records. |
-| 認証に関する情報 | オン | TypeSafe API key stored locally and transmitted for authentication. |
-| 個人的コミュニケーション | オフ | Email and chat bodies are not read. |
-| 位置情報 | 要確認 | The extension does not obtain location data. Confirm how TypeSafe handles API request IP addresses before deciding this checkbox. |
-| ウェブ履歴 | オン | Open tab URLs and titles are read, stored for undo, and sanitized for TypeSafe requests. |
-| ユーザーのアクティビティ | オフ | No browsing interaction tracking, clickstream, scroll, or keystroke logging. Local operation state supports organization and undo. |
-| ウェブサイトのコンテンツ | オフ | Page bodies, images, audio, and video are not read. Tab titles are disclosed under web history. |
+| ユーザーデータの種類         | 選択   | Note (do not paste)                                                                                                                |
+| ---------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 個人を特定できる情報         | オフ   | No dedicated collection of names, email addresses, or personal identifiers.                                                        |
+| 健康に関する情報             | オフ   | No collection of medical records or health measurements.                                                                           |
+| 財務状況や支払いに関する情報 | オフ   | No access to payment forms, financial accounts, or transaction records.                                                            |
+| 認証に関する情報             | オン   | TypeSafe API key stored locally and transmitted for authentication.                                                                |
+| 個人的コミュニケーション     | オフ   | Email and chat bodies are not read.                                                                                                |
+| 位置情報                     | 要確認 | The extension does not obtain location data. Confirm how TypeSafe handles API request IP addresses before deciding this checkbox.  |
+| ウェブ履歴                   | オン   | Open tab URLs and titles are read, stored for undo, and sanitized for TypeSafe requests.                                           |
+| ユーザーのアクティビティ     | オフ   | No browsing interaction tracking, clickstream, scroll, or keystroke logging. Local operation state supports organization and undo. |
+| ウェブサイトのコンテンツ     | オフ   | Page bodies, images, audio, and video are not read. Tab titles are disclosed under web history.                                    |
 
 These selections classify the implemented data handling rather than every type of information that could incidentally appear in tab metadata or custom rules. Local processing and transmission to TypeSafe remain part of the disclosure. The location checkbox is unresolved: TypeSafe's general privacy policy mentions collecting IP addresses and inferring location, but this alone does not establish the required selection for this API integration. “要確認” is not a form value; resolve it before transferring that row or submitting for review. See the [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy), and [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
 
