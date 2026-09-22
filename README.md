@@ -1,9 +1,20 @@
 <div align="center">
-  <img src="public/icon-128.png" alt="Jev Tab Order" width="96" height="96">
+  <img src="store-assets/social-preview-1280x640.png" alt="Jev Tab Order" width="640" height="320">
 
 # Jev Tab Order
 
 [English](README.md) | [日本語](README.ja.md)
+
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![GitHub Stars](https://img.shields.io/github/stars/proshunsuke/jev-tab-order.svg)](https://github.com/proshunsuke/jev-tab-order)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/)
+[![License](https://img.shields.io/github/license/proshunsuke/jev-tab-order.svg)](https://github.com/proshunsuke/jev-tab-order)
+
+<a href="https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka">
+  <img src="https://developer.chrome.com/static/docs/webstore/branding/image/iNEddTyWiMfLSwFD6qGq.png" alt="Available in the Chrome Web Store" width="248" height="75">
+</a>
 
 </div>
 
@@ -13,11 +24,13 @@ A Chrome extension that uses [Jev](https://typesafe.ai/) to organize tabs and gr
 
 ## Getting Started
 
-1. Follow [Manual Installation](#manual-installation) to load the extension. It is not yet published to the Chrome Web Store.
+1. Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka).
 2. Open the extension's settings and save your TypeSafe Jev API key.
 3. Click the toolbar icon in the window you want to organize. No popup opens; the icon shows “…” while running and “✓” on completion, then clears the badge after three seconds. You can also use the page context menu or a configured shortcut.
 
 See [supported languages](locales/).
+
+For installation from source, see [Manual Installation](#manual-installation).
 
 ### Settings
 

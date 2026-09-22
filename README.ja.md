@@ -1,9 +1,20 @@
 <div align="center">
-  <img src="public/icon-128.png" alt="Jev Tab Order" width="96" height="96">
+  <img src="store-assets/social-preview-1280x640.png" alt="Jev Tab Order" width="640" height="320">
 
 # Jev Tab Order
 
 [English](README.md) | [日本語](README.ja.md)
+
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/afbcjklgfmfokamphkgclkocfhgablka.svg)](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)
+[![GitHub Stars](https://img.shields.io/github/stars/proshunsuke/jev-tab-order.svg)](https://github.com/proshunsuke/jev-tab-order)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/)
+[![License](https://img.shields.io/github/license/proshunsuke/jev-tab-order.svg)](https://github.com/proshunsuke/jev-tab-order)
+
+<a href="https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka">
+  <img src="https://developer.chrome.com/static/docs/webstore/branding/image/iNEddTyWiMfLSwFD6qGq.png" alt="Available in the Chrome Web Store" width="248" height="75">
+</a>
 
 </div>
 
@@ -13,11 +24,13 @@
 
 ## 使い始める
 
-1. [手動インストール](#手動インストール)に従って拡張機能を読み込みます。Chrome Web Storeではまだ公開していません。
+1. [Chrome Web Store](https://chromewebstore.google.com/detail/jev-tab-order/afbcjklgfmfokamphkgclkocfhgablka)から拡張機能をインストールします。
 2. 拡張機能の設定を開き、TypeSafe JevのAPIキーを保存します。
 3. 整理したいウィンドウでツールバーのアイコンをクリックします。ポップアップは開かず、アイコンに実行中は「…」、完了時は「✓」を表示し、完了から3秒後にバッジが消えます。ページの右クリックメニューや設定済みショートカットからも実行できます。
 
 [対応言語](locales/)を参照してください。
+
+ソースコードから導入する場合は、[手動インストール](#手動インストール)を参照してください。
 
 ### 設定
 
