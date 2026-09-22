@@ -207,3 +207,44 @@ it("cancels an in-flight fetch", async () => {
   );
   await expect(createJudge("key", controller.signal)({}, questions)).rejects.toThrow("cancelled");
 });
+
+it("times out after 25 seconds without retrying", async () => {
+  vi.useFakeTimers();
+  try {
+    const fetch = vi.fn(
+      (_url: string, init: RequestInit) =>
+        new Promise<Response>((_resolve, reject) => {
+          init.signal!.addEventListener("abort", () => reject(init.signal!.reason), { once: true });
+        }),
+    );
+    vi.stubGlobal("fetch", fetch);
+    const result = expect(
+      createJudge("key", new AbortController().signal)({}, questions),
+    ).rejects.toThrow("networkError");
+    await vi.advanceTimersByTimeAsync(24999);
+    expect(fetch.mock.calls[0][1].signal!.aborted).toBe(false);
+    await vi.advanceTimersByTimeAsync(1);
+    await result;
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetch.mock.calls[0][1].signal!.aborted).toBe(true);
+  } finally {
+    vi.useRealTimers();
+  }
+});
+
+it("authenticates with the user's key through the SDK in a browser runtime", async () => {
+  vi.stubGlobal("window", {});
+  vi.stubGlobal("document", {});
+  const fetch = vi.fn().mockResolvedValue(Response.json(valid));
+  vi.stubGlobal("fetch", fetch);
+  expect(await createJudge("user-key", new AbortController().signal)({}, questions)).toEqual(
+    valid.answers,
+  );
+  expect(fetch).toHaveBeenCalledTimes(1);
+  const [url, init] = fetch.mock.calls[0];
+  expect(url).toBe("https://api.typesafe.ai/v1/systemone");
+  expect(init.method).toBe("POST");
+  const headers = new Headers(init.headers);
+  expect(headers.get("Authorization")).toBe("Bearer user-key");
+  expect(headers.get("Content-Type")).toBe("application/json");
+});

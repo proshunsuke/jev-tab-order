@@ -39,7 +39,7 @@
 
 ### Jevに送るリクエストの内容
 
-`POST https://api.typesafe.ai/v1/systemone` に、`model: "jev-latest"` を指定してJSONを送ります。本文は共通の判断材料（`state`）と複数の質問（`questions`）で構成します。**API呼び出しは1回ですが、その中に複数の質問をまとめて入れています。**
+公式の `@typesafe-ai/sdk` を使い、`POST https://api.typesafe.ai/v1/systemone` に、`model: "jev-latest"` を指定してJSONを送ります。本文は共通の判断材料（`state`）と複数の質問（`questions`）で構成します。**API呼び出しは1回ですが、その中に複数の質問をまとめて入れています。**
 
 - **`state` — 判断材料：** 適用するルール、WebタブのID・タイトル・加工済みURL・グループへの所属、既存グループの名前と所属タブのID、グループと未所属タブの現在の並びを渡します。タブの詳細情報は各質問で共有します。
 - **`questions` — 判定してほしいこと：** 各質問に、`type`（ChoiceかScore）、`instructions`（ルールに従って何を判断するか）、`criteria`（選択肢または順序付きの評価段階）を指定します。

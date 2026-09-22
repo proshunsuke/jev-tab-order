@@ -39,7 +39,7 @@ For example, if Jev selects “GitHub” as an ungrouped tab's destination and t
 
 ### What the Jev Request Contains
 
-The extension sends JSON to `POST https://api.typesafe.ai/v1/systemone` with `model: "jev-latest"`. The body contains shared context (`state`) and multiple judgments (`questions`). **One API call contains many questions**, prepared together before sending.
+The extension uses the official `@typesafe-ai/sdk` to send JSON to `POST https://api.typesafe.ai/v1/systemone` with `model: "jev-latest"`. The body contains shared context (`state`) and multiple judgments (`questions`). **One API call contains many questions**, prepared together before sending.
 
 - **`state` — information to judge:** The active rules, web tab IDs, titles, sanitized URLs, and group memberships; existing group names and member IDs; and the current sequence of groups and ungrouped tabs. Detailed tab information is shared across questions.
 - **`questions` — what to decide:** Each question contains `type` (Choice or Score), `instructions` (the judgment to make under the rules), and `criteria` (available choices or ordered scoring levels).

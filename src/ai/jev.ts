@@ -1,5 +1,6 @@
+import { APIError, TypeSafeClient } from "@typesafe-ai/sdk";
 import type { Answer, Choice, Judge, Question } from "@/src/types";
-const ENDPOINT = "https://api.typesafe.ai/v1/systemone";
+
 export const parseAnswers = (value: unknown, questions: Record<string, Question>) => {
   if (
     !value ||
@@ -72,48 +73,58 @@ export const parseAnswers = (value: unknown, questions: Record<string, Question>
 };
 export const createJudge = (apiKey: string, signal: AbortSignal): Judge => {
   if (!apiKey.trim()) throw new Error("missingKey");
+  const client = new TypeSafeClient({
+    apiKey,
+    baseURL: "https://api.typesafe.ai",
+    defaultModel: "jev-latest",
+    timeout: 25000,
+    retry: { maxRetries: 0 },
+    logLevel: "off",
+    // Users supply their own key in the extension's settings.
+    dangerouslyAllowBrowser: true,
+  });
   return async (state, questions) => {
     if (!Object.keys(questions).length) return {};
-    const body = JSON.stringify({ model: "jev-latest", state, questions });
     signal.throwIfAborted();
-    let response: Response;
-    try {
-      response = await fetch(ENDPOINT, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-        body,
-        signal: AbortSignal.any([signal, AbortSignal.timeout(25000)]),
-      });
-    } catch {
-      if (signal.aborted) throw new Error("cancelled");
-      throw new Error("networkError");
-    }
-    if (!response.ok) {
-      let tokenLimit = false;
-      if (response.status === 400) {
-        const failure = await response.json().catch(() => undefined);
-        tokenLimit = failure?.detail?.error_type === "max_tokens_exceeded";
-      }
-      throw new Error(
-        tokenLimit
-          ? "tokenLimit"
-          : response.status === 401 || response.status === 403
-            ? "invalidKey"
-            : response.status === 429
-              ? "rateLimited"
-              : "apiError",
-        { cause: { httpStatus: response.status } },
-      );
-    }
+    const sdkQuestions = Object.fromEntries(
+      Object.entries(questions).map(([id, question]) => {
+        if (question.type === "choice") return [id, question];
+        const [first, second, ...rest] = question.criteria;
+        if (first === undefined || second === undefined) throw new Error("invalidResponse");
+        return [id, { ...question, criteria: [first, second, ...rest] as const }];
+      }),
+    );
     let data: unknown;
     try {
-      data = await response.json();
-    } catch {
-      throw new Error("invalidResponse");
+      data = await client.systemOne({ state, questions: sdkQuestions }, { signal });
+    } catch (error) {
+      if (signal.aborted) throw new Error("cancelled");
+      if (error instanceof APIError) {
+        const body = error.body;
+        const detail = body && typeof body === "object" && "detail" in body ? body.detail : null;
+        const tokenLimit =
+          error.status === 400 &&
+          detail &&
+          typeof detail === "object" &&
+          "error_type" in detail &&
+          detail.error_type === "max_tokens_exceeded";
+        throw new Error(
+          tokenLimit
+            ? "tokenLimit"
+            : error.status === 401 || error.status === 403
+              ? "invalidKey"
+              : error.status === 429
+                ? "rateLimited"
+                : "apiError",
+          { cause: { httpStatus: error.status } },
+        );
+      }
+      throw new Error("networkError");
     }
     return parseAnswers(data, questions);
   };
 };
+
 export const isConfident = (answer: Answer): answer is Choice =>
   answer.type === "choice" &&
   answer.confidence >= 0.3 &&

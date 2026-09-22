@@ -1,3 +1,5 @@
+import type { EntryType } from "@typesafe-ai/sdk";
+
 export type Settings = { apiKey: string; rules: string; allowNewGroups: boolean };
 export type Tab = {
   id: number;
@@ -46,6 +48,6 @@ export type Score = {
 };
 export type Answer = Choice | Score;
 export type Judge = (
-  state: unknown,
+  state: EntryType,
   questions: Record<string, Question>,
 ) => Promise<Record<string, Answer>>;
