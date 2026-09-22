@@ -58,15 +58,18 @@ Choiceでは選んだIDが `choice` に返り、拡張機能がタブ同士の�
 
 ### 最小限のリクエスト・レスポンス例
 
-タブ `1` が既存のGitHubグループに所属し、タブ `2` が未所属のドキュメントページである例です。短いカスタムルールを使い、1回のリクエストから追加先のChoiceと優先度のScoreの2問だけを抜粋しています。実際には、ほかの並び順や隣接関係の質問も必要に応じて含めます。
+固定されていないタブが2つだけある例です。タブ `1`（GitHub）は既存グループ `7`（GitHub）に所属し、その後ろに未所属のタブ `2`（GitHub Docs）があります。カスタムルールは「GitHubのタブをGitHubグループに追加します。ドキュメントを先に配置します。」、新規グループ作成は無効です。以下は、この入力で `buildPlan` と公式SDKを実行して取得したリクエスト本文のJSON全体をもとにしています。実際に生成される6問とその指示をすべて含み、フィールドや質問を省略していません。
+
+`state.blocks` は、ウィンドウ全体での移動単位を現在の順序で並べたものです。既存グループは全体で1ブロック、未所属タブは1タブで1ブロックです。`key` は識別子、`title` はグループ名（未所属なら空文字）、`tabIds` は `state.tabs` の詳細情報を参照するIDです。Jevはこれを使い、グループ全体と未所属タブの順序・隣接関係を判断します。
+
+例のルール、`instructions`、`criteria`、`legend`の文は、読みやすさのためREADMEの言語に合わせて翻訳しています。実装の固定指示・評価基準・既定ルールは英語で、この例を取得した際のカスタムルールも英語です。ユーザーが入力したカスタムルールは翻訳せず、そのまま送信します。JSONの構造、キー、ID、URL、数値は変更していません。
 
 **リクエスト本文：**
 
 ```json
 {
-  "model": "jev-latest",
   "state": {
-    "rules": "Add GitHub tabs to the GitHub group. Put documentation first.",
+    "rules": "GitHubのタブをGitHubグループに追加します。ドキュメントを先に配置します。",
     "tabs": [
       {
         "id": "1",
@@ -102,34 +105,96 @@ Choiceでは選んだIDが `choice` に返り、拡張機能がタブ同士の�
     ]
   },
   "questions": {
+    "rank_tab_1": {
+      "type": "score",
+      "instructions": "state.rulesに従い、タブ1（ドメイン: github.com）のグループ内での配置優先度を評価してください。前に配置するほど低い点数にしてください。順序の指定がなければ中間の段階を使ってください。",
+      "criteria": [
+        "ルール上、最も前に配置する優先度",
+        "ルール上、前に配置する優先度",
+        "ルール上、中間の優先度、または特に順序の指定なし",
+        "ルール上、後ろに配置する優先度",
+        "ルール上、最も後ろに配置する優先度"
+      ]
+    },
     "membership_2": {
       "type": "choice",
-      "instructions": "According to state.rules, select an existing group for ungrouped tab 2 (Domain: docs.github.com), or none.",
+      "instructions": "state.rulesに従い、未所属タブ2（ドメイン: docs.github.com）の追加先となる既存グループを選んでください。該当しなければnoneを選んでください。",
       "criteria": {
-        "none": "Keep ungrouped",
-        "group_7": "Group name: \"GitHub\""
+        "none": "未所属のままにする",
+        "group_7": "グループ名: \"GitHub\""
       }
     },
     "rank_tab_2": {
       "type": "score",
-      "instructions": "Rate the position of tab 2 (Domain: docs.github.com) within its group according to state.rules; earlier is lower. Use the middle level if no order is specified.",
+      "instructions": "state.rulesに従い、タブ2（ドメイン: docs.github.com）のグループ内での配置優先度を評価してください。前に配置するほど低い点数にしてください。順序の指定がなければ中間の段階を使ってください。",
       "criteria": [
-        "Earliest priority under the rules",
-        "Early priority under the rules",
-        "Middle priority or no distinguished order under the rules",
-        "Late priority under the rules",
-        "Latest priority under the rules"
+        "ルール上、最も前に配置する優先度",
+        "ルール上、前に配置する優先度",
+        "ルール上、中間の優先度、または特に順序の指定なし",
+        "ルール上、後ろに配置する優先度",
+        "ルール上、最も後ろに配置する優先度"
       ]
+    },
+    "rank_block_group_7": {
+      "type": "score",
+      "instructions": "state.rulesに従い、state.blocks内でのブロックgroup_7（グループ名: \"GitHub\"）の配置優先度を評価してください。前に配置するほど低い点数にしてください。順序の指定がなければ中間の段階を使ってください。",
+      "criteria": [
+        "ルール上、最も前に配置する優先度",
+        "ルール上、前に配置する優先度",
+        "ルール上、中間の優先度、または特に順序の指定なし",
+        "ルール上、後ろに配置する優先度",
+        "ルール上、最も後ろに配置する優先度"
+      ]
+    },
+    "rank_block_topic_2": {
+      "type": "score",
+      "instructions": "state.rulesに従い、state.blocks内でのブロックtopic_2（ドメイン: docs.github.com）の配置優先度を評価してください。前に配置するほど低い点数にしてください。順序の指定がなければ中間の段階を使ってください。",
+      "criteria": [
+        "ルール上、最も前に配置する優先度",
+        "ルール上、前に配置する優先度",
+        "ルール上、中間の優先度、または特に順序の指定なし",
+        "ルール上、後ろに配置する優先度",
+        "ルール上、最も後ろに配置する優先度"
+      ]
+    },
+    "related_topic_2": {
+      "type": "choice",
+      "instructions": "state.rulesに従い、ブロックtopic_2（ドメイン: docs.github.com）に隣接させる候補ブロックのうち、現在の順序で最も前にあるものを選んでください。該当しなければselfを選んでください。",
+      "criteria": {
+        "self": "別々のままにする",
+        "group_7": "グループ名: \"GitHub\""
+      }
     }
-  }
+  },
+  "model": "jev-latest"
 }
 ```
 
-**レスポンス例（`answers` のみ抜粋）：** 数値は形式を説明するための架空の値です。実測結果や、必ず返る回答ではありません。
+**レスポンス全体の例（モック）：** 全6問の回答に加えて `model` と `usage` を含みます。実際のJev APIから取得したレスポンスではなく、モデル識別子・判断結果・確率・確信度・トークン数は説明用の値です。実際の値はAPIに依存し、この値が返ることを保証するものではありません。
 
 ```json
 {
+  "model": "jev-latest",
   "answers": {
+    "rank_tab_1": {
+      "type": "score",
+      "score": 2,
+      "confidence": 1,
+      "probabilities": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "ルール上、最も前に配置する優先度",
+        "1": "ルール上、前に配置する優先度",
+        "2": "ルール上、中間の優先度、または特に順序の指定なし",
+        "3": "ルール上、後ろに配置する優先度",
+        "4": "ルール上、最も後ろに配置する優先度"
+      }
+    },
     "membership_2": {
       "type": "choice",
       "choice": "group_7",
@@ -151,18 +216,71 @@ Choiceでは選んだIDが `choice` に返り、拡張機能がタブ同士の�
         "4": 0
       },
       "legend": {
-        "0": "Earliest priority under the rules",
-        "1": "Early priority under the rules",
-        "2": "Middle priority or no distinguished order under the rules",
-        "3": "Late priority under the rules",
-        "4": "Latest priority under the rules"
+        "0": "ルール上、最も前に配置する優先度",
+        "1": "ルール上、前に配置する優先度",
+        "2": "ルール上、中間の優先度、または特に順序の指定なし",
+        "3": "ルール上、後ろに配置する優先度",
+        "4": "ルール上、最も後ろに配置する優先度"
+      }
+    },
+    "rank_block_group_7": {
+      "type": "score",
+      "score": 2,
+      "confidence": 1,
+      "probabilities": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "ルール上、最も前に配置する優先度",
+        "1": "ルール上、前に配置する優先度",
+        "2": "ルール上、中間の優先度、または特に順序の指定なし",
+        "3": "ルール上、後ろに配置する優先度",
+        "4": "ルール上、最も後ろに配置する優先度"
+      }
+    },
+    "rank_block_topic_2": {
+      "type": "score",
+      "score": 0,
+      "confidence": 1,
+      "probabilities": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "ルール上、最も前に配置する優先度",
+        "1": "ルール上、前に配置する優先度",
+        "2": "ルール上、中間の優先度、または特に順序の指定なし",
+        "3": "ルール上、後ろに配置する優先度",
+        "4": "ルール上、最も後ろに配置する優先度"
+      }
+    },
+    "related_topic_2": {
+      "type": "choice",
+      "choice": "group_7",
+      "confidence": 1,
+      "probabilities": {
+        "self": 0,
+        "group_7": 1
       }
     }
+  },
+  "usage": {
+    "input_tokens": 1000,
+    "output_tokens": 100
   }
 }
 ```
 
 拡張機能は質問のキーと回答を対応させます。この例では `membership_2.choice` がグループ `7` を選び、選択確率と確信度が採用基準を満たすため、タブ `2` をそこへ追加します。`rank_tab_2.score: 0` は「最も前」の優先度です。実際の配置はほかのタブへの回答も使ってローカルで計算するため、この値だけで「タブの位置番号0へ移動する」という意味にはなりません。
+
+`rank_block_topic_2` は未所属タブをウィンドウ全体の移動単位として評価し、`related_topic_2` は隣接相手にGitHubのブロックを選んでいます。これらは所属の変更を指示するものではなく、所属先は `membership_2` で判断します。この例ではタブ `2` がGitHubグループに追加されるため、最終的には独立したブロックとして移動しません。
 
 ## プライバシー
 

@@ -58,13 +58,16 @@ Choice returns the selected ID in `choice`; the extension uses it to connect tab
 
 ### Minimal Request and Response Example
 
-Suppose tab `1` is already in the GitHub group and tab `2` is an ungrouped documentation page. This example uses a short custom rule and shows only two questions from the single request: a destination Choice and a priority Score. The real request also contains the other applicable ordering and adjacency questions.
+This example has two unpinned tabs: tab `1` (GitHub) in existing group `7` (GitHub), followed by ungrouped tab `2` (GitHub Docs). The custom rule is “Add GitHub tabs to the GitHub group. Put documentation first.” and new group creation is disabled. The request below is the complete JSON body captured by running `buildPlan` and the official SDK for this input. All six questions and their actual instructions are included; no fields or questions are omitted.
+
+`state.blocks` lists the current window-level movement units in order: each existing group is one block, and each ungrouped tab is one block. `key` identifies the block, `title` is its group name (empty for ungrouped tabs), and `tabIds` references the detailed entries in `state.tabs`. Jev uses these units to judge the order and adjacency of whole groups and ungrouped tabs.
+
+The prose in the example rules, `instructions`, `criteria`, and `legend` follows the language of each README; the Japanese README translates it for readability. The implementation’s fixed instructions, criteria, and default rules are English, as was the custom rule used to capture this example. User-entered custom rules are sent unchanged, without translation. JSON structure, keys, IDs, URLs, and numbers are unchanged.
 
 **Request body:**
 
 ```json
 {
-  "model": "jev-latest",
   "state": {
     "rules": "Add GitHub tabs to the GitHub group. Put documentation first.",
     "tabs": [
@@ -102,6 +105,17 @@ Suppose tab `1` is already in the GitHub group and tab `2` is an ungrouped docum
     ]
   },
   "questions": {
+    "rank_tab_1": {
+      "type": "score",
+      "instructions": "Rate the position of tab 1 (Domain: github.com) within its group according to state.rules; earlier is lower. Use the middle level if no order is specified.",
+      "criteria": [
+        "Earliest priority under the rules",
+        "Early priority under the rules",
+        "Middle priority or no distinguished order under the rules",
+        "Late priority under the rules",
+        "Latest priority under the rules"
+      ]
+    },
     "membership_2": {
       "type": "choice",
       "instructions": "According to state.rules, select an existing group for ungrouped tab 2 (Domain: docs.github.com), or none.",
@@ -120,16 +134,67 @@ Suppose tab `1` is already in the GitHub group and tab `2` is an ungrouped docum
         "Late priority under the rules",
         "Latest priority under the rules"
       ]
+    },
+    "rank_block_group_7": {
+      "type": "score",
+      "instructions": "Rate the position of block group_7 (Group name: \"GitHub\") among state.blocks according to state.rules; earlier is lower. Use the middle level if no order is specified.",
+      "criteria": [
+        "Earliest priority under the rules",
+        "Early priority under the rules",
+        "Middle priority or no distinguished order under the rules",
+        "Late priority under the rules",
+        "Latest priority under the rules"
+      ]
+    },
+    "rank_block_topic_2": {
+      "type": "score",
+      "instructions": "Rate the position of block topic_2 (Domain: docs.github.com) among state.blocks according to state.rules; earlier is lower. Use the middle level if no order is specified.",
+      "criteria": [
+        "Earliest priority under the rules",
+        "Early priority under the rules",
+        "Middle priority or no distinguished order under the rules",
+        "Late priority under the rules",
+        "Latest priority under the rules"
+      ]
+    },
+    "related_topic_2": {
+      "type": "choice",
+      "instructions": "According to state.rules, select the earliest candidate block to place adjacent to block topic_2 (Domain: docs.github.com), or self.",
+      "criteria": {
+        "self": "Keep separate",
+        "group_7": "Group name: \"GitHub\""
+      }
     }
-  }
+  },
+  "model": "jev-latest"
 }
 ```
 
-**Illustrative response (only the `answers` field):** These values are made up to explain the format, not recorded model output or a guaranteed result.
+**Complete response example (mock):** This includes all six answers plus `model` and `usage`. It is not a captured response from the live Jev API: the model identifier, judgments, probabilities, confidence, and token counts are illustrative values. Actual responses depend on the API; this example does not guarantee these values.
 
 ```json
 {
+  "model": "jev-latest",
   "answers": {
+    "rank_tab_1": {
+      "type": "score",
+      "score": 2,
+      "confidence": 1,
+      "probabilities": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "Earliest priority under the rules",
+        "1": "Early priority under the rules",
+        "2": "Middle priority or no distinguished order under the rules",
+        "3": "Late priority under the rules",
+        "4": "Latest priority under the rules"
+      }
+    },
     "membership_2": {
       "type": "choice",
       "choice": "group_7",
@@ -157,12 +222,65 @@ Suppose tab `1` is already in the GitHub group and tab `2` is an ungrouped docum
         "3": "Late priority under the rules",
         "4": "Latest priority under the rules"
       }
+    },
+    "rank_block_group_7": {
+      "type": "score",
+      "score": 2,
+      "confidence": 1,
+      "probabilities": {
+        "0": 0,
+        "1": 0,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "Earliest priority under the rules",
+        "1": "Early priority under the rules",
+        "2": "Middle priority or no distinguished order under the rules",
+        "3": "Late priority under the rules",
+        "4": "Latest priority under the rules"
+      }
+    },
+    "rank_block_topic_2": {
+      "type": "score",
+      "score": 0,
+      "confidence": 1,
+      "probabilities": {
+        "0": 1,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "legend": {
+        "0": "Earliest priority under the rules",
+        "1": "Early priority under the rules",
+        "2": "Middle priority or no distinguished order under the rules",
+        "3": "Late priority under the rules",
+        "4": "Latest priority under the rules"
+      }
+    },
+    "related_topic_2": {
+      "type": "choice",
+      "choice": "group_7",
+      "confidence": 1,
+      "probabilities": {
+        "self": 0,
+        "group_7": 1
+      }
     }
+  },
+  "usage": {
+    "input_tokens": 1000,
+    "output_tokens": 100
   }
 }
 ```
 
 The extension matches each answer to its question key. Here, `membership_2.choice` selects group `7`, and its probability and confidence pass the acceptance thresholds, so tab `2` is added to that group. `rank_tab_2.score: 0` gives it the earliest priority level. Its final position is calculated locally using the other tabs' answers too; this score alone does not mean “move to tab index 0.”
+
+`rank_block_topic_2` scores the ungrouped tab as a window-level block; `related_topic_2` selects the GitHub block as its neighbor. These judgments do not themselves change membership: that is the role of `membership_2`. Here, tab `2` joins the GitHub group, so it no longer moves as a separate block.
 
 ## Privacy
 
