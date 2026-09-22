@@ -512,19 +512,19 @@ Select “いいえ” explicitly; do not retain the form’s initial “はい�
 
 The selections below reflect the implemented data flows, including local processing. They must agree with [PRIVACY.md](PRIVACY.md). The reference project's answers cannot be copied unchanged: this extension handles API credentials and sends tab metadata to TypeSafe.
 
-| ユーザーデータの種類         | 選択 | Note (do not paste)                                                                                                                                                                              |
-| ---------------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 個人を特定できる情報         | オン | Names, email addresses, and other identifiers may occur in titles, URL paths, group names, and custom rules processed locally or sent to TypeSafe.                                               |
-| 健康に関する情報             | オン | Health information may be present in user-provided rules or tab metadata. It is not reliably removed before processing or transmission; page bodies and medical records are not separately read. |
-| 財務状況や支払いに関する情報 | オン | Financial information may be present in user-provided rules or tab metadata. The extension does not separately access payment forms or bank records.                                             |
-| 認証に関する情報             | オン | TypeSafe API key stored locally and transmitted for authentication                                                                                                                               |
-| 個人的コミュニケーション     | オン | Message subjects or excerpts may occur in tab titles or user-provided rules. The extension does not separately read email or chat bodies.                                                        |
-| 位置情報                     | オン | TypeSafe may receive the request IP address and infer general location; location information can also occur in user input. The extension does not request GPS access.                            |
-| ウェブ履歴                   | オン | open tab URLs are read, stored for undo, and sanitized for TypeSafe requests                                                                                                                     |
-| ユーザーのアクティビティ     | オン | user-requested tab/group layouts and operation state are processed locally; no general click or keystroke monitoring                                                                             |
-| ウェブサイトのコンテンツ     | オン | page titles are read and used for semantic organization; page bodies are not read                                                                                                                |
+| ユーザーデータの種類 | 選択 | Note (do not paste) |
+| -------------------- | ---- | ------------------- |
+| 個人を特定できる情報 | オフ | No dedicated collection of names, email addresses, or personal identifiers. |
+| 健康に関する情報 | オフ | No collection of medical records or health measurements. |
+| 財務状況や支払いに関する情報 | オフ | No access to payment forms, financial accounts, or transaction records. |
+| 認証に関する情報 | オン | TypeSafe API key stored locally and transmitted for authentication. |
+| 個人的コミュニケーション | オフ | Email and chat bodies are not read. |
+| 位置情報 | 要確認 | The extension does not obtain location data. Confirm how TypeSafe handles API request IP addresses before deciding this checkbox. |
+| ウェブ履歴 | オン | Open tab URLs and titles are read, stored for undo, and sanitized for TypeSafe requests. |
+| ユーザーのアクティビティ | オフ | No browsing interaction tracking, clickstream, scroll, or keystroke logging. Local operation state supports organization and undo. |
+| ウェブサイトのコンテンツ | オフ | Page bodies, images, audio, and video are not read. Tab titles are disclosed under web history. |
 
-The selections intentionally include sensitive information that may be embedded in the actual inputs; they do not imply dedicated access to medical records, payment forms, or message bodies. The extension does not classify or reliably redact these categories before processing. This is a conservative disclosure decision for this implementation, not a claim that Google requires every extension to select all categories. Local operation records and TypeSafe service usage also account for the activity selection. See the [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy), and [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
+These selections classify the implemented data handling rather than every type of information that could incidentally appear in tab metadata or custom rules. Local processing and transmission to TypeSafe remain part of the disclosure. The location checkbox is unresolved: TypeSafe's general privacy policy mentions collecting IP addresses and inferring location, but this alone does not establish the required selection for this API integration. “要確認” is not a form value; resolve it before transferring that row or submitting for review. See the [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq), [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy), and [TypeSafe Privacy Policy](https://typesafe.ai/legal/privacy-policy).
 
 | 開示事項                                                                         | 選択 |
 | -------------------------------------------------------------------------------- | ---- |
@@ -574,4 +574,4 @@ Requires Chrome 138+. The Password field contains the review TypeSafe API key. R
 
 ## Transfer instructions
 
-Copy all specified values and localized text; upload the exact asset paths listed above. Preserve the password field for the publisher’s private review API key. There are no other unresolved form values. Before submission, ensure the updated `PRIVACY.md` is present on GitHub’s `main` branch; local edits do not update the linked public policy. Save listing/privacy/distribution changes as a draft and test instructions with their separate save button.
+Copy all specified values and localized text; upload the exact asset paths listed above. Preserve the password field for the publisher’s private review API key. Resolve the location data-use checkbox marked “要確認” before transferring that row; all other non-credential form values are specified. Before submission, ensure the updated `PRIVACY.md` is present on GitHub’s `main` branch; local edits do not update the linked public policy. Save listing/privacy/distribution changes as a draft and test instructions with their separate save button.
